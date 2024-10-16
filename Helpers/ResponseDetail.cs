@@ -56,6 +56,17 @@
 
             return r;
         }
+        public ResponseDetail<T> FailedResultData(string message)
+        {
+            var r = new ResponseDetail<T>
+            {
+                Message = message,
+                IsSuccessful = false,
+               
+            };
+
+            return r;
+        }
 
         public ResponseDetail<T> SuccessResultData(T result)
         {
@@ -81,5 +92,18 @@
 
             return r;
         }
+
+        public ResponseDetail<T> SuccessResultData(string message)
+        {
+            var r = new ResponseDetail<T>
+            {
+                Message = message,
+                IsSuccessful = true,
+                ResultCode = 200
+            };
+
+            return r;
+        }
+
     }
 }

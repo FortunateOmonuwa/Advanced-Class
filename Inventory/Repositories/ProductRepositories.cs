@@ -8,10 +8,11 @@ namespace Inventory.Repositories
     {
 
         private readonly InventoryContext _context;
-
-        public ProductRepositories(InventoryContext context)
+        private readonly ILogger<ProductRepositories> _logger;
+        public ProductRepositories(InventoryContext context, ILogger<ProductRepositories> logger)
         {
             _context = context;
+            _logger = logger;
         }
         public async Task<ResponseDetail<Product>> AddProduct(Product model)
         {
@@ -20,10 +21,11 @@ namespace Inventory.Repositories
             {
 
                 var product = await _context.Products.FirstOrDefaultAsync(p => p.Name == model.Name);
-                
+
                 if (product is not null && product.InStock)
                 {
                     product.Quantity += model.Quantity;
+                    response = response.SuccessResultData("Product Successfully added");
                 }
                 else
                 {
@@ -33,15 +35,29 @@ namespace Inventory.Repositories
                         InStock = model.InStock,
                         Name = model.Name
                     };
-                    
+
+                    await _context.AddAsync(new_product);
+                    if (await _context.SaveChangesAsync() > 0)
+                    {
+                        response = response.SuccessResultData(new_product, "Product Successfully added");
+                        _logger.LogInformation("Product successfully added", new_product);
+
+                    }
+                    else
+                    {
+                        response = response.FailedResultData("Error ");
+                        _logger.LogError(message:"Error creating a new product");
+                       
+                    }
+
+
+
                 }
-
-
-
             }
             catch (Exception ex)
             {
-                response = response.FailedResultData(new Product(), $"{ex.Message}", ex.HResult);
+                response = response.FailedResultData($"{ex.Message}", ex.HResult);
+                _logger.LogError(message: ex.Message);
             }
             return response;
         }
@@ -82,17 +98,20 @@ namespace Inventory.Repositories
                 var product = await _context.Products.FindAsync(productId);
                 if(product is null)
                 {
-                    response = response.FailedResultData(new Product(), "Product does not exist", 404);
+                    response = response.FailedResultData( "Product does not exist", 404);
+                    _logger.LogError(message: $"Product with ID:{productId} does not exist");
                 }
                 else
                 {
                     response = response.SuccessResultData(product);
+                    _logger.LogInformation(message: $"Product with ID:{productId} was successfully fetched");
                 }
                 
             }
             catch (Exception ex)
             {
-                response = response.FailedResultData(new Product(), $"{ex.Message}", ex.HResult);
+                response = response.FailedResultData( $"{ex.Message}", ex.HResult);
+                _logger.LogError(ex.Message, ex.HResult);
             }
             return response;
         }
@@ -145,15 +164,19 @@ namespace Inventory.Repositories
                 if (prod > 0)
                 {
                     response = response.SuccessResultData("All products were succcessfully updated");
+                    _logger.LogInformation(message: "All products were succcessfully updated");
                 }
                 else
                 {
                     response = response.FailedResultData("An error occured while saving the update changes to the database");
+                    _logger.LogError(message: "An error occured while saving the update changes to the database");
                 }
             }
             catch (Exception ex)
             {
                 response = response.FailedResultData($"{ex.Message}", ex.HResult);
+                _logger.LogError(ex.Message);
+               
             }
             return response;
         }
