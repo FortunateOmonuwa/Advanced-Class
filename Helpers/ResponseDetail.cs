@@ -52,6 +52,8 @@
                 Message = message,
                 IsSuccessful = false,               
                 ResultCode = code
+               
+                
             };
 
             return r;

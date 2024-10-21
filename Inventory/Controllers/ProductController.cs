@@ -32,7 +32,7 @@ namespace Inventory.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("Product/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(int id)
         {
             try
@@ -74,7 +74,7 @@ namespace Inventory.Controllers
             }
         }
 
-        [HttpDelete("Product/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             try
@@ -95,7 +95,7 @@ namespace Inventory.Controllers
             }
         }
 
-        [HttpPut("Product")]
+        [HttpPut]
         public async Task<IActionResult> UpdateProduct(Product product)
         {
             try
