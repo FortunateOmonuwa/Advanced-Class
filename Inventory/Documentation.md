@@ -1,21 +1,22 @@
 # Inventory API Documentation
-*This documentation provides an overview of how this API works*
+
+_This documentation provides an overview of how this API works_
 
 ## Base Url
 
-The base url for this API is: [BASEURL](www.facebook.com)
-
+The base url for this API is:  `http://purpur-001-site1.htempurl.com`
 
 ## End Points
 
-
 ### Products Endpoint
 
-#### - Add Products 
-- **URL**: `api/Product`
+#### - Add Products
+
+- **URL**: `/api/Product`
 - **Method**: POST
 - **Description**: Add a new product
-- **Request Body**: 
+- **Request Body**:
+
 ```json
 {
   "name": "Mouse",
@@ -23,9 +24,12 @@ The base url for this API is: [BASEURL](www.facebook.com)
   "quantity": 0
 }
 ```
-- **Format**: application/json 
-- **Example Request**	
- POST `https://localhost.com/api/Product` 
+
+- **Format**: application/json
+- **Example Request**
+
+POST `http://purpur-001-site1.htempurl.com/api/Product`
+
 ```json
 {
   "name": "Mouse",
@@ -35,6 +39,7 @@ The base url for this API is: [BASEURL](www.facebook.com)
 ```
 
 - **Example successful response**
+
 ```json
 {
   "isSuccessful": true,
@@ -50,6 +55,7 @@ The base url for this API is: [BASEURL](www.facebook.com)
 ```
 
 - **Example failed response**
+
 ```json
 {
   "isSuccessful": false,
@@ -57,19 +63,21 @@ The base url for this API is: [BASEURL](www.facebook.com)
   "result": null,
   "resultCode": 400
 }
-
 ```
 
-#### - Get Product 
-- **URL**: `api/Product/{id}`
+#### - Get Product
+
+- **URL**: `/api/Product/{id}`
 - **Method**: GET
 - **Description**: Get a product by it's Id
 - **Parameter**:
-    - `Id` (int)   
-- **Example Request**	
- GET `https://localhost.com/api/Product/{id}` 
+  - `Id` (int)
+- **Example Request**
+
+GET `http://purpur-001-site1.htempurl.com/api/Product/{id}`
 
 - **Example successful response**
+
 ```json
 {
   "isSuccessful": true,
@@ -85,6 +93,7 @@ The base url for this API is: [BASEURL](www.facebook.com)
 ```
 
 - **Example failed response**
+
 ```json
 {
   "isSuccessful": false,
@@ -92,17 +101,19 @@ The base url for this API is: [BASEURL](www.facebook.com)
   "result": null,
   "resultCode": 404
 }
-
 ```
 
-#### - Get All Products 
-- **URL**: `api/Product/Products`
+#### - Get All Products
+
+- **URL**: `/api/Product/Products`
 - **Method**: GET
-- **Description**: Get all products  
-- **Example Request**	
- GET `https://localhost.com/api/Product/Products` 
+- **Description**: Get all products
+- **Example Request**
+
+GET `http://purpur-001-site1.htempurl.com/api/Product/Products`
 
 - **Example successful response**
+
 ```json
 {
      [
@@ -171,25 +182,25 @@ The base url for this API is: [BASEURL](www.facebook.com)
 ```
 
 - **Example failed response**
+
 ```json
 {
- 
   "type": "https://tools.ietf.org/html/rfc9110#section-15.5.5",
   "title": "Not Found",
   "status": 404,
   "traceId": "00-d3c54f6a5588757b612fa2f783a607c4-b645b03f88548bae-00"
-
 }
-
 ```
 
-#### - Update Product 
-- **URL**: `api/Product/{id}`
+#### - Update Product
+
+- **URL**: `/api/Product/{id}`
 - **Method**: PUT
 - **Description**: Update a product
 - **Parameter**:
-    - `Id` (int)   
-- **Request Body**: 
+  - `Id` (int)
+- **Request Body**:
+
 ```json
 {
   "name": "Mouse",
@@ -197,11 +208,14 @@ The base url for this API is: [BASEURL](www.facebook.com)
   "quantity": 0
 }
 ```
+
 - **Format**: application/json
-- **Example Request**	
- PUT `https://localhost.com/api/Product/{id}` 
+- **Example Request**
+
+PUT `http://purpur-001-site1.htempurl.com/api/Product/{id}`
 
 - **Example successful response**
+
 ```json
 {
   "isSuccessful": true,
@@ -217,6 +231,7 @@ The base url for this API is: [BASEURL](www.facebook.com)
 ```
 
 - **Example failed response**
+
 ```json
 {
   "isSuccessful": false,
@@ -224,17 +239,19 @@ The base url for this API is: [BASEURL](www.facebook.com)
   "result": null,
   "resultCode": 404
 }
-
 ```
 
-#### - Update Products 
-- **URL**: `api/Product/Products`
+#### - Update Products
+
+- **URL**: `/api/Product/Products`
 - **Method**: PUT
-- **Description**: Update products with quantity greater than 0 but have an instock value of false 
-- **Example Request**	
- PUT `https://localhost.com/api/Product/Products` 
+- **Description**: Update products with quantity greater than 0 but have an instock value of false
+- **Example Request**
+
+PUT `http://purpur-001-site1.htempurl.com/api/Product/Products`
 
 - **Example successful response**
+
 ```json
 {
   "isSuccessful": false,
@@ -245,6 +262,7 @@ The base url for this API is: [BASEURL](www.facebook.com)
 ```
 
 - **Example failed response**
+
 ```json
 {
   "isSuccessful": false,
@@ -254,16 +272,19 @@ The base url for this API is: [BASEURL](www.facebook.com)
 }
 ```
 
-#### - Delete Product 
-- **URL**: `api/Product/{id}`
+#### - Delete Product
+
+- **URL**: `/api/Product/{id}`
 - **Method**: DELETE
 - **Description**: Delete a product
 - **Parameter**:
-    - `Id` (int)   
-- **Example Request**	
- DELETE `https://localhost.com/api/Product/{id}` 
+  - `Id` (int)
+- **Example Request**
+
+DELETE `http://purpur-001-site1.htempurl.com/api/Product/{id}`
 
 - **Example successful response**
+
 ```json
 {
   "isSuccessful": true,
@@ -274,6 +295,7 @@ The base url for this API is: [BASEURL](www.facebook.com)
 ```
 
 - **Example failed response**
+
 ```json
 {
   "isSuccessful": false,
@@ -281,5 +303,4 @@ The base url for this API is: [BASEURL](www.facebook.com)
   "result": null,
   "resultCode": 404
 }
-
 ```

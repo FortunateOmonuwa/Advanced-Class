@@ -3,6 +3,7 @@ using Inventory.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    partial class InventoryContextModelSnapshot : ModelSnapshot
+    [Migration("20241021131826_test hosted db")]
+    partial class testhosteddb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,44 +50,44 @@ namespace Inventory.Migrations
                         new
                         {
                             Id = 1,
-                            InStock = true,
+                            InStock = false,
                             Name = "Hp EliteBook 745 G6",
-                            Quantity = 6
+                            Quantity = 16
                         },
                         new
                         {
                             Id = 2,
-                            InStock = true,
+                            InStock = false,
                             Name = "Elders Schnapps",
-                            Quantity = 6
+                            Quantity = 11
                         },
                         new
                         {
                             Id = 3,
-                            InStock = false,
+                            InStock = true,
                             Name = "Mac Book Pro 2024",
-                            Quantity = 12
+                            Quantity = 15
                         },
                         new
                         {
                             Id = 4,
                             InStock = false,
                             Name = "Iphone 16pro max",
-                            Quantity = 9
+                            Quantity = 12
                         },
                         new
                         {
                             Id = 5,
                             InStock = false,
                             Name = "Bottled Groudnut",
-                            Quantity = 9
+                            Quantity = 4
                         },
                         new
                         {
                             Id = 6,
-                            InStock = true,
+                            InStock = false,
                             Name = "CWAY",
-                            Quantity = 3
+                            Quantity = 7
                         });
                 });
 #pragma warning restore 612, 618

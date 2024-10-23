@@ -32,7 +32,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<InventoryContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("InventoryConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("HostedDatabase"));
 });
 
 builder.Services.AddScoped<IProductService, ProductRepositories>();
