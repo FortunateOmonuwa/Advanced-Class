@@ -9,6 +9,7 @@ using Serilog.Events;
 using Serilog.Formatting;
 using Serilog.Formatting.Compact;
 using Serilog.Formatting.Json;
+using Inventory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,7 +38,8 @@ builder.Services.AddDbContext<InventoryContext>(options =>
 
 builder.Services.AddScoped<IProductService, ProductRepositories>();
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
-
+builder.Services.AddScoped<IRegister, RegisterRepository>();
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

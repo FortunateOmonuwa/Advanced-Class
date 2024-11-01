@@ -64,6 +64,8 @@
             {
                 Message = message,
                 IsSuccessful = false,
+                ResultCode = 400
+
                
             };
 
