@@ -29,8 +29,8 @@ namespace Inventory.Repositories
             //Using extension
             //var fileExtension = Path.GetExtension(model.IdentificationDocument.FileName);
             //if (!fileExtension.ToLower().Equals(".pdf"))
-            //    //|| !fileExtension.ToLower().Equals(".doc")
-            //    //|| !fileExtension.ToLower().Equals(".docx"))
+            //    //&& !fileExtension.ToLower().Equals(".doc")
+            //    //&& !fileExtension.ToLower().Equals(".docx"))
             //{
             //    return response.FailedResultData("Only PDF or Word documents are allowed");
             //}
@@ -43,8 +43,7 @@ namespace Inventory.Repositories
                 "application/pdf"
             };
 
-            if (!model.IdentificationDocument.ContentType.Equals("application/pdf")
-                || !fileExtension.Contains(model.IdentificationDocument.ContentType))
+            if (!fileExtension.Contains(model.IdentificationDocument.ContentType))
             {
                 return response.FailedResultData("Only PDF or Word documents are allowed");
             }
