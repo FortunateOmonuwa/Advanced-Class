@@ -56,7 +56,11 @@ namespace Inventory.Repositories
                     return response.FailedResultData($"User with {model.Email} already exists");
                 }
 
-                var folderPath = Path.Combine(appSettings.StoragePath, model.Email);//Documents/Afeez@gmail.com
+                var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                var parentDirectory = Path.Combine(baseDirectory, "..", "..", "..", "..");
+                var parentPath = Path.GetFullPath(parentDirectory);
+
+                var folderPath = Path.Combine(parentPath, appSettings.StoragePath, model.Email);//Documents/Afeez@gmail.com
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
@@ -75,7 +79,7 @@ namespace Inventory.Repositories
                     LastName = model.LastName,
                     PhoneNumber = model.PhoneNumber,
                     Documents = []
-                     
+
                 };
                 await context.Users.AddAsync(user);
                 await context.SaveChangesAsync();
@@ -91,6 +95,7 @@ namespace Inventory.Repositories
                 user.Documents.Add(document);
                 await context.SaveChangesAsync();
                 return response.SuccessResultData(user);
+               
             }
             catch(Exception ex)
             {
